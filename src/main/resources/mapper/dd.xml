@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.DdMapper">
+    <select id="list" resultType="com.example.springboot.entity.Dd">
+        select * from dd
+    </select>
+<!--    <select id="add0" >-->
+<!--        UPDATE dd SET createtime = NOW() WHERE id = #{id};-->
+<!--    </select>-->
+    <select id="add" resultType="com.example.springboot.entity.Dd">
+        insert into dd(name,order1,type,state,room,value,phone,latetime)values (#{name},#{order1},#{type},'入住中',#{room},#{value},#{phone},#{latetime})
+    </select>
+    <select id="listByCondition" resultType="com.example.springboot.entity.Dd">
+        select * from dd
+        <where>
+            <if test="order1 !=null and order1 !=''">
+                order1 like concat('%', #{ order1}, '%')
+            </if>
+        </where>
+
+    </select>
+    <select id="listByCondition1" resultType="com.example.springboot.entity.Dd">
+        select * from dd
+        <where>
+            <if test="phone !=null and phone !=''">
+                phone like concat('%', #{ phone}, '%')
+            </if>
+        </where>
+
+    </select>
+    <update id="updateById">
+
+
+
+        UPDATE dd
+        SET state = '已退房',createtime = now()
+        WHERE id = #{id};
+
+
+
+
+    </update>
+    <update id="updateState">
+        UPDATE dd
+        SET state = #{state}
+        WHERE id = #{id}
+    </update>
+    <select id="getById" resultType="com.example.springboot.entity.Dd">
+        select * from dd where id = #{id}
+    </select>
+    <delete id="deleteById">
+        delete from dd where id = #{id}
+    </delete>
+    <select id="getCountByTimeRange" resultType="com.example.springboot.mapper.po.ddCountpo">
+        <choose>
+            <when test="type == 1">
+                select count(id) as count, DATE_FORMAT(submit_time,'%Y-%m-%d') as date from df
+                where
+                <choose>
+                    <when test="timeRange == 'week'">
+                        submit_time >=  DATE_SUB(NOW(),INTERVAL 1 WEEK)
+                    </when>
+                    <when test="timeRange == 'month'">
+                        submit_time >=  DATE_SUB(NOW(),INTERVAL 1 MONTH)
+                    </when>
+                    <when test="timeRange == 'month2'">
+                        submit_time >=  DATE_SUB(NOW(),INTERVAL 2 MONTH)
+                    </when>
+                    <when test="timeRange == 'month3'">
+                        submit_time >=  DATE_SUB(NOW(),INTERVAL 3 MONTH)
+                    </when>
+                    <otherwise>
+                        submit_time > now()
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                select count(id) as count, DATE_FORMAT(createtime,'%Y-%m-%d') as date from dd
+                where
+                <choose>
+                    <when test="timeRange == 'week'">
+                        createtime >=  DATE_SUB(NOW(),INTERVAL 1 WEEK)
+                    </when>
+                    <when test="timeRange == 'month'">
+                        createtime >=  DATE_SUB(NOW(),INTERVAL 1 MONTH)
+                    </when>
+                    <when test="timeRange == 'month2'">
+                        createtime >=  DATE_SUB(NOW(),INTERVAL 2 MONTH)
+                    </when>
+                    <when test="timeRange == 'month3'">
+                        createtime >=  DATE_SUB(NOW(),INTERVAL 3 MONTH)
+                    </when>
+                    <otherwise>
+                        createtime > now()
+                    </otherwise>
+                </choose>
+            </otherwise>
+        </choose>
+        group by date
+    </select>
+
+<!--<select id="listByCondition" resultType="com.example.demo.entity.Admin">-->
+<!--    select * from admin-->
+<!--<where>-->
+<!--    <if test="username !=null and username !=''">-->
+<!--        username like concat('%', #{ username }, '%')-->
+<!--    </if>-->
+<!--</where>-->
+
+<!--</select>-->
+<!--    <update id="updateByID">-->
+<!--        update user set username = #{username},  identity = #{identity } where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getByID" resultType="com.example.demo.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+<!--    <delete id="deleteById">-->
+<!--        delete from user where id = #{id}-->
+<!--    </delete>-->
+<!--    <select id="getByUsernameAndPassword" resultType="com.example.springboot.entity.Admin">-->
+<!--        select * from admin where username=#{username} and password=#{password}-->
+<!--    </select>-->
+</mapper>

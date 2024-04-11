@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.PlMapper">
+
+    <select id="getByOrder" resultType="com.example.springboot.entity.Pl">
+        select * from pl where order1 =#{order1}
+    </select>
+    <select id="list1" resultType="boolean"
+            parameterType="map">
+        SELECT
+            CASE
+                WHEN mean !=null THEN false
+                ELSE true
+                END AS mean_status
+        FROM pl
+        WHERE order1 =#{order1}
+    </select>
+    <select id="getById" resultType="com.example.springboot.entity.Pl">
+        select * from pl where id = #{id}
+    </select>
+
+    <select id="add" resultType="com.example.springboot.entity.Pl">
+
+        UPDATE pl
+        SET mean = #{mean}, photos = #{photos}
+        WHERE order1 = #{order1};
+
+    </select>
+    <select id="listByCondition" resultType="com.example.springboot.entity.Pl">
+        select * from pl where mean is not null
+
+            <if test="order1 !=null and order1 !=''">
+              and  order1 like concat('%', #{ order1 }, '%')
+            </if>
+
+    </select>
+    <select id="listByCondition1" resultType="com.example.springboot.entity.Pl">
+        select * from pl  where order1= #{order1};
+
+    </select>
+    <delete id="deleteById">
+        delete from pl where id = #{id}
+    </delete>
+    <select id="list" resultType="com.example.springboot.entity.Pl">
+        select * from pl where mean is not null
+    </select>
+</mapper>

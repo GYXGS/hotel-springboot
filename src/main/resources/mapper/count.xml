@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.CountMapper">
+    <select id="list"  resultType="boolean"
+            parameterType="map">
+--         select * from count where id=1
+        SELECT
+            CASE
+                WHEN count_dan >= 1 THEN TRUE
+                ELSE FALSE
+                END AS count_dan_status
+        FROM count
+        WHERE id = 1
+    </select>
+    <select id="list1" resultType="boolean"
+            parameterType="map">
+        SELECT
+            CASE
+                WHEN count_suan >= 1 THEN TRUE
+                ELSE FALSE
+                END AS count_dan_status
+        FROM count
+        WHERE id = 1
+    </select>
+    <select id="list2" resultType="boolean"
+            parameterType="map">
+        SELECT
+            CASE
+                WHEN count_zong >= 1 THEN TRUE
+                ELSE FALSE
+                END AS count_dan_status
+        FROM count
+        WHERE id = 1
+    </select>
+<select id="sum"    resultType="int"
+            parameterType="map" >
+        SELECT sum FROM count
+        WHERE id = 1</select>
+    <select id="listByCondition" resultType="com.example.springboot.entity.Count">
+        select * from count where  id = 1
+<!--        <where>-->
+<!--            <if test="room!=null and room !=''">-->
+<!--                room like concat('%', #{room }, '%')-->
+<!--            </if>-->
+<!--        </where>-->
+
+    </select>
+    </mapper>

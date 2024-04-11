@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.FjMapper">
+    <select id="list" resultType="com.example.springboot.entity.Fj">
+        select * from Fj where state = 1
+    </select>
+    <select id="add" resultType="com.example.springboot.entity.Fj">
+        insert into fj(room,type,value,state,image,image1)values (#{room},#{type},#{value},'1',#{image},#{image1})
+    </select>
+    <select id="listByCondition" resultType="com.example.springboot.entity.Fj">
+        select * from fj
+        <where>
+            <if test="room!=null and room !=''">
+                room like concat('%', #{room }, '%')
+            </if>
+        </where>
+
+    </select>
+    <select id="listByCondition1" resultType="com.example.springboot.entity.Fj">
+        select * from fj
+        <where>
+            <if test="type!=null and type !=''">
+                type like concat('%', #{type }, '%')
+            </if>
+        </where>
+
+    </select>
+    <update id="updateById">
+        update fj set room=#{room}, type = #{type}, value = #{value},state = #{state},image= #{image},image1= #{image1} where id = #{id}
+    </update>
+    <update id="updateByState">
+        update fj set  state = '0' where room = #{room}
+    </update>
+    <update id="updateByState1">
+        update fj set  state = '1' where room = #{room}
+    </update>
+    <select id="getById" resultType="com.example.springboot.entity.Fj">
+        select * from fj where id = #{id}
+    </select>
+    <delete id="deleteById">
+        delete from fj where id = #{id}
+    </delete>
+    <select id="getByNo" resultType="com.example.springboot.entity.Fj">
+        select * from fj where room = #{room}
+    </select>
+    <select id="listByCondition2" resultType="com.example.springboot.entity.Fj">
+        select * from fj
+        <where>
+            <if test="type!=null and type !=''">
+                type like concat('%', #{type }, '%')
+            </if>  and state = true
+        </where>
+    </select>
+<!--<select id="listByCondition" resultType="com.example.demo.entity.Admin">-->
+<!--    select * from admin-->
+<!--<where>-->
+<!--    <if test="username !=null and username !=''">-->
+<!--        username like concat('%', #{ username }, '%')-->
+<!--    </if>-->
+<!--</where>-->
+
+<!--</select>-->
+<!--    <update id="updateByID">-->
+<!--        update user set username = #{username},  identity = #{identity } where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getByID" resultType="com.example.demo.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+<!--    <delete id="deleteById">-->
+<!--        delete from user where id = #{id}-->
+<!--    </delete>-->
+<!--    <select id="getByUsernameAndPassword" resultType="com.example.springboot.entity.Admin">-->
+<!--        select * from admin where username=#{username} and password=#{password}-->
+<!--    </select>-->
+</mapper>

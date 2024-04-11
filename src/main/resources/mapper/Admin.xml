@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.AdminMapper">
+    <select id="list" resultType="com.example.springboot.entity.Admin">
+        select * from admin
+    </select>
+    <select id="listByCondition" resultType="com.example.springboot.entity.Admin">
+        select * from admin
+        <where>
+            <if test="username !=null and username !=''">
+                username like concat('%', #{ username }, '%')
+            </if>
+        </where>
+
+    </select>
+    <select id="add" resultType="com.example.springboot.entity.Admin">
+        insert into admin(username,name,phone,status)values (#{username},#{name},#{phone},'1')
+    </select>
+    <update id="updateById">
+        update admin set username = #{username},name = #{name}, phone = #{phone},status = #{status} where id = #{id}
+    </update>
+    <select id="getById" resultType="com.example.springboot.entity.Admin">
+        select * from admin where id = #{id}
+    </select>
+    <select id="getByUsername" resultType="com.example.springboot.entity.Admin">
+        select * from admin where username = #{username}
+    </select>
+    <update id="update1">
+        update admin set  status = #{status} where id = #{id}
+    </update>
+<!--    <update id="update0">-->
+<!--        update admin set  status = '1' where id = #{id}-->
+<!--    </update>-->
+<!--<select id="listByCondition" resultType="com.example.demo.entity.Admin">-->
+<!--    select * from admin-->
+<!--<where>-->
+<!--    <if test="username !=null and username !=''">-->
+<!--        username like concat('%', #{ username }, '%')-->
+<!--    </if>-->
+<!--</where>-->
+
+<!--</select>-->
+<!--    <update id="updateByID">-->
+<!--        update user set username = #{username},  identity = #{identity } where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getByID" resultType="com.example.demo.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+<!--    <delete id="deleteById">-->
+<!--        delete from user where id = #{id}-->
+<!--    </delete>-->
+    <select id="getByUsernameAndPassword" resultType="com.example.springboot.entity.Admin">
+        select * from admin where username=#{username} and password=#{password}
+    </select>
+    <update id="updatePassword">
+        update admin set password = #{newPass} where username = #{username}
+    </update>
+    <delete id="deleteById">
+        delete from admin where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.View_plMapper">
+    <select id="list" resultType="com.example.springboot.entity.View_pl">
+        select * from view_pl where mean in not null and mean !=''
+    </select>
+<!--    <select id="listByCondition" resultType="com.example.springboot.entity.Admin">-->
+<!--        select * from admin-->
+<!--        <where>-->
+<!--            <if test="username !=null and username !=''">-->
+<!--                username like concat('%', #{ username }, '%')-->
+<!--            </if>-->
+<!--        </where>-->
+
+<!--    </select>-->
+<!--    <select id="add" resultType="com.example.springboot.entity.Admin">-->
+<!--        insert into admin(username,name,phone,sex,card,position)values (#{username},#{name},#{phone},#{sex},#{card},#{position})-->
+<!--    </select>-->
+<!--    <update id="updateById">-->
+<!--        update admin set name = #{name}, phone = #{phone}, sex = #{sex}, card = #{card},position = #{position} where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getById" resultType="com.example.springboot.entity.Admin">-->
+<!--        select * from admin where id = #{id}-->
+<!--    </select>-->
+<!--<select id="listByCondition" resultType="com.example.demo.entity.Admin">-->
+<!--    select * from admin-->
+<!--<where>-->
+<!--    <if test="username !=null and username !=''">-->
+<!--        username like concat('%', #{ username }, '%')-->
+<!--    </if>-->
+<!--</where>-->
+
+<!--</select>-->
+<!--    <update id="updateByID">-->
+<!--        update user set username = #{username},  identity = #{identity } where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getByID" resultType="com.example.demo.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+
+<!--    <select id="getByOrder" resultType="com.example.springboot.entity.Pl">-->
+<!--        select * from pl where order1 =#{order1}-->
+<!--    </select>-->
+<!--    <update id="updatePassword">-->
+<!--        update admin set password = #{newPass} where username = #{username} and password = #{password}-->
+<!--    </update>-->
+<!--    <delete id="deleteById">-->
+<!--        delete from admin where id = #{id}-->
+<!--    </delete>-->
+<!--    <select id="addByOrder" resultType="com.example.springboot.entity.Pl">-->
+<!--        update pl set mean=#{mean} where order1=#{order1}-->
+<!--    </select>-->
+    <select id="listByCondition" resultType="com.example.springboot.entity.View_pl">
+        select * from view_pl where mean is not null
+<!--        <where>-->
+<!--            <if test="order1 !=null and order1 !=''">-->
+<!--                order1 like concat('%', #{ order1 }, '%')-->
+<!--            </if>-->
+<!--        </where>-->
+
+    </select>
+<!--    <delete id="deleteById">-->
+<!--        delete from pl where id = #{id}-->
+<!--    </delete>-->
+</mapper>

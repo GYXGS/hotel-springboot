@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.DfMapper">
+    <select id="list" resultType="com.example.springboot.entity.Df">
+        select * from df
+    </select>
+<!--    <select id="add0" resultType="com.example.springboot.entity.Df">-->
+<!--        insert into df(name,type,card,phone,booking_day,number,state,createtime)values (#{name},#{type},#{card},#{phone},#{booking_day},#{number},'已预约',now())-->
+<!--    </select>-->
+<!--    <select id="add" resultType="com.example.springboot.entity.Df">-->
+<!--        insert into df(name,type,card,phone,booking_day,number,state,createtime)values (#{name},'总统房',#{card},#{phone},#{booking_day},#{number},'已预约',now())-->
+<!--    </select>-->
+<!--    <select id="add1" resultType="com.example.springboot.entity.Df">-->
+<!--        insert into df(name,type,card,phone,booking_day,number,state,createtime)values (#{name},'豪华双人房',#{card},#{phone},#{booking_day},#{number},'已预约',now())-->
+<!--    </select>-->
+<!--    <select id="add1" resultType="com.example.springboot.entity.Df">-->
+<!--        insert into df(name,type,card,phone,number,state,createtime,begintime,latetime)values (#{name},'豪华双人房',#{card},#{phone},#{number},'已预约',now(),#{begintime},#{latetime})-->
+<!--    </select>-->
+    <select id="add1" resultType="com.example.springboot.entity.Df">
+        insert into df(name,type,card,phone,state,submit_time,begintime,latetime,room,price,payment_status,order_id)values (#{name},#{type},#{card},#{phone},'已预约',now(),#{begintime},#{latetime},#{room},#{price},'未支付',#{orderId})
+    </select>
+<!--    <select id="add2" resultType="com.example.springboot.entity.Df">-->
+<!--        insert into df(name,type,card,phone,booking_day,number,state,createtime)values (#{name},'豪华单人房',#{card},#{phone},#{booking_day},#{number},'已预约',now())-->
+<!--    </select>-->
+    <select id="listByCondition" resultType="com.example.springboot.entity.Df">
+        select * from df
+        <where>
+            <if test="card !=null and card !=''">
+                card like concat('%', #{ card }, '%')
+            </if>
+        </where>
+
+    </select>
+    <update id="updateById">
+        update df set  state ='已转订单' where id = #{id}
+    </update>
+    <update id="updateById0">
+        update df  set name=#{name},type=#{type},card=#{card},state=#{state},phone=#{phone},submit_time=#{submitTime},begintime=#{begintime},latetime=#{latetime},room=#{room},price=#{price},payment_status=#{paymentStatus},pay_time=#{payTime},alipay_no=#{alipayNo},create_time=#{createTime} where id = #{id}
+    </update>
+    <select id="getById" resultType="com.example.springboot.entity.Df">
+        select * from df where id = #{id}
+    </select>
+    <delete id="deleteById">
+        delete from df where id = #{id}
+    </delete>
+    <update id="updateById1">
+
+
+
+        UPDATE df
+        SET payment_status= '已支付'
+        WHERE id = #{id};
+
+
+
+
+    </update>
+
+
+</mapper>

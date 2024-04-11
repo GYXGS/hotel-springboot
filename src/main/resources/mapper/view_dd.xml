@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.View_ddMapper">
+    <select id="list" resultType="com.example.springboot.entity.View_dd">
+        select * from view_dd
+    </select>
+<!--    <select id="listByCondition" resultType="com.example.springboot.entity.View_dd">-->
+<!--        select * from view_dd-->
+<!--        <where>-->
+<!--            <if test="order1 !=null and order1 !=''">-->
+<!--                order1 like concat('%', #{ order1}, '%')-->
+<!--            </if>-->
+<!--        </where>-->
+
+<!--    </select>-->
+    <select id="listByCondition1" resultType="com.example.springboot.entity.View_dd">
+        select * from view_dd
+        <where>
+           phone=#{phone}
+        </where>
+
+    </select>
+<!--    <update id="updateById">-->
+<!--        update view_dd set  state ='已退房' where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getById" resultType="com.example.springboot.entity.View_dd">-->
+<!--        select * from view_dd where id = #{id}-->
+<!--    </select>-->
+<!--    <delete id="deleteById">-->
+<!--        delete from view_dd where id = #{id}-->
+<!--    </delete>-->
+
+<!--<select id="listByCondition" resultType="com.example.demo.entity.Admin">-->
+<!--    select * from admin-->
+<!--<where>-->
+<!--    <if test="username !=null and username !=''">-->
+<!--        username like concat('%', #{ username }, '%')-->
+<!--    </if>-->
+<!--</where>-->
+
+<!--</select>-->
+<!--    <update id="updateByID">-->
+<!--        update user set username = #{username},  identity = #{identity } where id = #{id}-->
+<!--    </update>-->
+<!--    <select id="getByID" resultType="com.example.demo.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
+<!--    <delete id="deleteById">-->
+<!--        delete from user where id = #{id}-->
+<!--    </delete>-->
+<!--    <select id="getByUsernameAndPassword" resultType="com.example.springboot.entity.Admin">-->
+<!--        select * from admin where username=#{username} and password=#{password}-->
+<!--    </select>-->
+</mapper>
