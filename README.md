@@ -11,4 +11,4 @@
 ![屏幕截图 2024-04-11 215534](https://github.com/GYXGS/hotel-springboot/assets/165204188/6fd2c261-3fef-4818-acc0-b984f0af8a86)
 ![屏幕截图 2024-04-11 215550](https://github.com/GYXGS/hotel-springboot/assets/165204188/142b85e8-c372-48ce-ae8b-5bdb94f3158d)
 ![屏幕截图 2024-04-11 215617](https://github.com/GYXGS/hotel-springboot/assets/165204188/35151b77-4877-4fa5-97fc-e2ee195daed1)
-该文档没有vue和数据库，qq1215595061(备明来意）
+该文档没有vue和数据库，qq1215595061(备明来意，有偿）
